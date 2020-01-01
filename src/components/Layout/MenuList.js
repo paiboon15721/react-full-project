@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Menu, Icon, Layout } from 'antd'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 const { Sider } = Layout
 
 const menus = [
@@ -10,6 +10,7 @@ const menus = [
 
 export default () => {
   const [collapsed, setCollapsed] = useState(false)
+  const { pathname } = useLocation()
 
   return (
     <Sider
@@ -17,9 +18,15 @@ export default () => {
       collapsed={collapsed}
       onCollapse={() => setCollapsed(!collapsed)}
     >
-      <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
+      <Menu
+        theme="dark"
+        defaultSelectedKeys={[
+          menus.findIndex(v => v.url === pathname).toString(),
+        ]}
+        mode="inline"
+      >
         {menus.map((v, k) => (
-          <Menu.Item key={k + 1}>
+          <Menu.Item key={k}>
             <Link to={v.url}>
               <Icon type={v.icon} />
               <span>{v.name}</span>

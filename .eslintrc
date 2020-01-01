@@ -3,7 +3,8 @@
   "rules": {
     "semi": ["warn", "never"],
     "import/no-unresolved": "error",
-    "comma-dangle": ["error", "always-multiline"]
+    "comma-dangle": ["error", "always-multiline"],
+    "jsx-a11y/anchor-is-valid": 0
   },
   "settings": {
     "import/resolver": {

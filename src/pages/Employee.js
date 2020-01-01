@@ -1,3 +1,4 @@
 import React from 'react'
+import Table from 'components/Table'
 
-export default () => <h1>Employee page</h1>
+export default () => <Table />

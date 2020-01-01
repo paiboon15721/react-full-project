@@ -7,7 +7,7 @@ const data = {
     {
       id: faker.random.number,
       name: faker.name.firstName,
-      dob: () => faker.date.between('1980-01-01', '2000-12-31'),
+      age: () => faker.random.number({ min: 20, max: 60 }),
       salary: () => faker.finance.amount(25000, 80000),
       department: () =>
         departments[faker.random.number(departments.length - 1)],
