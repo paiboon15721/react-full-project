@@ -1,6 +1,6 @@
 import React from 'react'
-import { Button } from 'antd'
+import Layout from 'components/Layout'
 
-const App = () => <Button>Add</Button>
+const App = () => <Layout>Hello</Layout>
 
 export default App
