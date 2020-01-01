@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
-import { Menu, Icon } from 'antd'
-import { Layout } from 'antd'
+import { Menu, Icon, Layout } from 'antd'
+import { Link } from 'react-router-dom'
 const { Sider } = Layout
 
 const menus = [
-  { name: 'Dashboard', icon: 'pie-chart' },
-  { name: 'Employee', icon: 'user' },
+  { name: 'Dashboard', icon: 'pie-chart', url: '/dashboard' },
+  { name: 'Employee', icon: 'user', url: '/employee' },
 ]
 
 export default () => {
@@ -20,8 +20,10 @@ export default () => {
       <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
         {menus.map((v, k) => (
           <Menu.Item key={k + 1}>
-            <Icon type={v.icon} />
-            <span>{v.name}</span>
+            <Link to={v.url}>
+              <Icon type={v.icon} />
+              <span>{v.name}</span>
+            </Link>
           </Menu.Item>
         ))}
       </Menu>
