@@ -6,6 +6,7 @@ const { Sider } = Layout
 const menus = [
   { name: 'Dashboard', icon: 'pie-chart', url: '/dashboard' },
   { name: 'Employee', icon: 'user', url: '/employee' },
+  { name: 'Employee Add New', icon: 'user', url: '/employee/add-new' },
 ]
 
 export default () => {

@@ -1,4 +1,4 @@
 import React from 'react'
-import Table from 'components/Table'
+import MyForm from 'components/MyForm'
 
-export default () => <Table />
+export default () => <MyForm />
