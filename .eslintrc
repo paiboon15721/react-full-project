@@ -1,0 +1,15 @@
+{
+  "extends": "react-app",
+  "rules": {
+    "semi": ["warn", "never"],
+    "import/no-unresolved": "error",
+    "comma-dangle": ["error", "always-multiline"]
+  },
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "paths": ["src"]
+      }
+    }
+  }
+}
