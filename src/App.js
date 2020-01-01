@@ -1,5 +1,7 @@
 import React from 'react'
+import { Button } from 'antd'
+import 'antd/dist/antd.css'
 
-const App = () => <h1>Hello</h1>
+const App = () => <Button>Add</Button>
 
 export default App
