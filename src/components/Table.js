@@ -8,8 +8,8 @@ export default () => {
   const [employees, setEmployees] = useState([])
 
   const fetchEmployees = async () => {
-    const { data } = await axios.get('http://localhost:4000/employees')
-    setEmployees(data.map(v => ({ ...v, key: v.id })))
+    const { data: employees } = await axios.get('http://localhost:4000/employees')
+    setEmployees(employees.map(v => ({ ...v, key: v.id })))
   }
 
   useEffect(() => {
