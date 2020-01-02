@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from 'react'
-import { Link, useLocation } from 'react-router-dom'
-import { Table, Divider, Button, Row, Col } from 'antd'
+import { Link } from 'react-router-dom'
+import { Table, Divider, Button, Row } from 'antd'
 import axios from 'axios'
 
 const { Column } = Table
 
 export default () => {
   const [employees, setEmployees] = useState([])
-  const { pathname } = useLocation()
 
   const fetchEmployees = async () => {
     const { data: employees } = await axios.get(
