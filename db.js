@@ -16,15 +16,23 @@ const data = {
     },
     100,
   ),
+  login: gen({
+    user: faker.name.firstName,
+    role: () => 'admin',
+  }),
 }
 
 function gen(schema, length) {
-  return Array.from({ length }).map(() =>
+  const mapper = () =>
     Object.keys(schema).reduce((entity, key) => {
       entity[key] = schema[key]()
       return entity
-    }, {}),
-  )
+    }, {})
+
+  if (length) {
+    return Array.from({ length }).map(mapper)
+  }
+  return mapper()
 }
 
 module.exports = () => data

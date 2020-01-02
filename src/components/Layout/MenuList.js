@@ -8,9 +8,10 @@ const menus = [
   { name: 'Employee', icon: 'user', url: '/employee' },
 ]
 
-export default () => {
+const MenuList = () => {
   const [collapsed, setCollapsed] = useState(false)
   const { pathname } = useLocation()
+  const currentMenuKey = menus.findIndex(v => v.url === pathname).toString()
 
   return (
     <Sider
@@ -18,13 +19,7 @@ export default () => {
       collapsed={collapsed}
       onCollapse={() => setCollapsed(!collapsed)}
     >
-      <Menu
-        theme="dark"
-        defaultSelectedKeys={[
-          menus.findIndex(v => v.url === pathname).toString(),
-        ]}
-        mode="inline"
-      >
+      <Menu theme="dark" selectedKeys={currentMenuKey} mode="inline">
         {menus.map((v, k) => (
           <Menu.Item key={k}>
             <Link to={v.url}>
@@ -37,3 +32,5 @@ export default () => {
     </Sider>
   )
 }
+
+export default MenuList
