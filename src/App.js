@@ -8,11 +8,15 @@ import {
 } from 'react-router-dom'
 import Dashboard from 'pages/Dashboard'
 import Employee from 'pages/Employee'
+import EmployeeAddNew from 'pages/EmployeeAddNew'
 
 const App = () => (
   <Router>
     <Layout>
       <Switch>
+      <Route path="/employee/add-new">
+          <EmployeeAddNew />
+        </Route>
         <Route path="/employee">
           <Employee />
         </Route>
