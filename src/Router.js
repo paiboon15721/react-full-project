@@ -26,7 +26,7 @@ export default () => (
         <PrivateRoute path="/employee/add-new">
           <EmployeeAddNew />
         </PrivateRoute>
-        <PrivateRoute path="/employee">
+        <PrivateRoute exact path="/employee">
           <Employee />
         </PrivateRoute>
         <PrivateRoute path="/dashboard">

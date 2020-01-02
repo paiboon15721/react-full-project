@@ -99,8 +99,15 @@ const EmployeeForm = props => {
         })(<Input placeholder="email" />)}
       </Form.Item>
       <Form.Item {...tailFormItemLayout}>
-        <Button type="primary" htmlType="submit">
+        <Button
+          type="primary"
+          htmlType="submit"
+          style={{ marginRight: '16px' }}
+        >
           Add New
+        </Button>
+        <Button type="danger" onClick={() => history.push('/employee')}>
+          Back
         </Button>
       </Form.Item>
     </Form>
