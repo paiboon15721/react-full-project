@@ -1,5 +1,10 @@
 import React from 'react'
+import useAuth from 'stores/useAuth'
+import { Redirect } from 'react-router-dom'
 
-const App = () => <h1>hello context</h1>
+export default () => {
+  const { token } = useAuth()
+  console.log(token)
 
-export default App
+  return token ? <h1>{String(token)}</h1> : <Redirect to="/login" />
+}

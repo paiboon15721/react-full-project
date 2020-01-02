@@ -1,11 +1,20 @@
 import React from 'react'
 import { Button } from 'antd'
+import { useHistory } from 'react-router-dom'
 import axios from 'utils/axios'
+import useAuth from 'stores/useAuth'
 
 export default () => {
+  const history = useHistory()
+  const { setToken } = useAuth()
+
   const handleLogin = async () => {
-    const { data } = await axios.get('/login')
-    localStorage.setItem('token', data.user)
+    const {
+      data: { user },
+    } = await axios.get('/login')
+    localStorage.setItem('token', user)
+    setToken(user)
+    history.push('/')
   }
 
   return (
