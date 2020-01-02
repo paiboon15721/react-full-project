@@ -16,6 +16,7 @@ const data = {
     },
     100,
   ),
+  departments,
   login: gen({
     user: faker.name.firstName,
     role: () => 'admin',

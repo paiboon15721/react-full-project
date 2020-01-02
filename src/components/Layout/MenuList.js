@@ -15,6 +15,7 @@ const MenuList = () => {
 
   return (
     <Sider
+      breakpoint="lg"
       collapsible
       collapsed={collapsed}
       onCollapse={() => setCollapsed(!collapsed)}
