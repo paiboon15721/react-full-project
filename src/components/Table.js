@@ -1,25 +1,11 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { Table, Divider, Button } from 'antd'
-import axios from 'axios'
+import useFetch from 'hooks/useFetch'
 
 const { Column } = Table
 
 export default () => {
-  const [employees, setEmployees] = useState([])
-  const [loading, setLoading] = useState(false)
-
-  const fetchEmployees = async () => {
-    setLoading(true)
-    const { data: employees } = await axios.get(
-      'http://localhost:4000/employees',
-    )
-    setEmployees(employees.map(v => ({ ...v, key: v.id })))
-    setLoading(false)
-  }
-
-  useEffect(() => {
-    fetchEmployees()
-  }, [])
+  const [employees, loading] = useFetch('/employees')
 
   return (
     <Table dataSource={employees} loading={loading}>

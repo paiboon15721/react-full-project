@@ -9,12 +9,16 @@ import {
 import Dashboard from 'pages/Dashboard'
 import Employee from 'pages/Employee'
 import EmployeeAddNew from 'pages/EmployeeAddNew'
+import Test from 'pages/Test'
 
 const App = () => (
   <Router>
     <Layout>
       <Switch>
-      <Route path="/employee/add-new">
+        <Route path="/test">
+          <Test />
+        </Route>
+        <Route path="/employee/add-new">
           <EmployeeAddNew />
         </Route>
         <Route path="/employee">

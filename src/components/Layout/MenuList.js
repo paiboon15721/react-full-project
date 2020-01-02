@@ -6,6 +6,7 @@ const { Sider } = Layout
 const menus = [
   { name: 'Dashboard', icon: 'pie-chart', url: '/dashboard' },
   { name: 'Employee', icon: 'user', url: '/employee' },
+  { name: 'Test', icon: 'user', url: '/test' },
 ]
 
 const MenuList = () => {

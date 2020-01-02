@@ -1,8 +1,8 @@
 import React from 'react'
 import { Form, Input, InputNumber, Select, Button } from 'antd'
+import useFetch from 'hooks/useFetch'
 
 const { Option } = Select
-const departments = ['staff', 'manager', 'sale', 'account', 'specialist']
 const formItemLayout = {
   labelCol: {
     xs: { span: 28 },
@@ -31,19 +31,9 @@ function onChange(value) {
   console.log(`selected ${value}`)
 }
 
-function onBlur() {
-  console.log('blur')
-}
-
-function onFocus() {
-  console.log('focus')
-}
-
-function onSearch(val) {
-  console.log('search:', val)
-}
-
 export default () => {
+  const [departments] = useFetch('/departments')
+
   return (
     <Form {...formItemLayout}>
       <Form.Item label="FullName">
@@ -66,17 +56,15 @@ export default () => {
           style={{ width: 200 }}
           placeholder="Select a department"
           optionFilterProp="children"
-          onChange={onChange}
-          onFocus={onFocus}
-          onBlur={onBlur}
-          onSearch={onSearch}
           filterOption={(input, option) =>
             option.props.children.toLowerCase().indexOf(input.toLowerCase()) >=
             0
           }
         >
-          {departments.map((v, k) => (
-            <Option key={k} value={v}>{v}</Option>
+          {departments.map(v => (
+            <Option key={v.id} value={v.id}>
+              {v.name}
+            </Option>
           ))}
         </Select>
       </Form.Item>

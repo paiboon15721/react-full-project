@@ -1,6 +1,12 @@
 const faker = require('faker')
 
-const departments = ['staff', 'manager', 'sale', 'account', 'specialist']
+const departments = [
+  'staff',
+  'manager',
+  'sale',
+  'account',
+  'specialist',
+].map(v => ({ id: faker.random.number(), name: v }))
 
 const data = {
   employees: gen(
