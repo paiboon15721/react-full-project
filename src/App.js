@@ -10,9 +10,13 @@ import Dashboard from 'pages/Dashboard'
 import Employee from 'pages/Employee'
 import EmployeeAddNew from 'pages/EmployeeAddNew'
 import Test from 'pages/Test'
+import Login from 'pages/Login'
 
 const App = () => (
   <Router>
+    <Route path="/login">
+      <Login />
+    </Route>
     <Layout>
       <Switch>
         <Route path="/test">
@@ -27,7 +31,7 @@ const App = () => (
         <Route path="/dashboard">
           <Dashboard />
         </Route>
-        <Route path="/">
+        <Route exact path="/">
           <Redirect to="/dashboard" />
         </Route>
       </Switch>

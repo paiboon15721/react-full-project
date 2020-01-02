@@ -1,6 +1,8 @@
 import React from 'react'
 import { Form, Input, InputNumber, Select, Button } from 'antd'
 import useFetch from 'hooks/useFetch'
+import axios from 'utils/axios'
+import { useHistory } from 'react-router-dom'
 
 const { Option } = Select
 const formItemLayout = {
@@ -27,52 +29,74 @@ const tailFormItemLayout = {
   },
 }
 
-function onChange(value) {
-  console.log(`selected ${value}`)
-}
-
-export default () => {
+const EmployeeForm = props => {
   const [departments] = useFetch('/departments')
+  const history = useHistory()
+
+  const { validateFieldsAndScroll, getFieldDecorator } = props.form
+
+  const handleSubmit = e => {
+    e.preventDefault()
+    validateFieldsAndScroll(async (err, values) => {
+      if (!err) {
+        console.log('Received values of form: ', values)
+        await axios.post('/employees', values)
+        history.push('/employee')
+      }
+    })
+  }
 
   return (
-    <Form {...formItemLayout}>
+    <Form {...formItemLayout} onSubmit={handleSubmit}>
       <Form.Item label="FullName">
-        <Input placeholder="Name" />
+        {getFieldDecorator('name', { rules: [{ required: true }] })(
+          <Input placeholder="Name" />,
+        )}
       </Form.Item>
       <Form.Item label="Age">
-        <InputNumber min={20} max={60} defaultValue={20} onChange={onChange} />
+        {getFieldDecorator('age', {
+          rules: [{ required: true }],
+          initialValue: 20,
+        })(<InputNumber min={20} max={60} />)}
       </Form.Item>
       <Form.Item label="Salary">
-        <InputNumber
-          min={25000}
-          max={80000}
-          defaultValue={25000}
-          onChange={onChange}
-        />
+        {getFieldDecorator('salary', {
+          rules: [{ required: true }],
+          initialValue: 25000,
+        })(<InputNumber min={25000} max={80000} />)}
       </Form.Item>
       <Form.Item label="Department">
-        <Select
-          showSearch
-          style={{ width: 200 }}
-          placeholder="Select a department"
-          optionFilterProp="children"
-          filterOption={(input, option) =>
-            option.props.children.toLowerCase().indexOf(input.toLowerCase()) >=
-            0
-          }
-        >
-          {departments.map(v => (
-            <Option key={v.id} value={v.id}>
-              {v.name}
-            </Option>
-          ))}
-        </Select>
+        {getFieldDecorator('department', {
+          rules: [{ required: true }],
+        })(
+          <Select
+            showSearch
+            style={{ width: 200 }}
+            placeholder="Select a department"
+            optionFilterProp="children"
+            filterOption={(input, option) =>
+              option.props.children
+                .toLowerCase()
+                .indexOf(input.toLowerCase()) >= 0
+            }
+          >
+            {departments.map(v => (
+              <Option key={v.id} value={v.name}>
+                {v.name}
+              </Option>
+            ))}
+          </Select>,
+        )}
       </Form.Item>
       <Form.Item label="Phone">
-        <Input placeholder="Phone" />
+        {getFieldDecorator('phone', {
+          rules: [{ required: true }],
+        })(<Input placeholder="Phone" />)}
       </Form.Item>
       <Form.Item label="Email">
-        <Input placeholder="email" />
+        {getFieldDecorator('email', {
+          rules: [{ required: true }],
+        })(<Input placeholder="email" />)}
       </Form.Item>
       <Form.Item {...tailFormItemLayout}>
         <Button type="primary" htmlType="submit">
@@ -82,3 +106,5 @@ export default () => {
     </Form>
   )
 }
+
+export default Form.create({ name: 'employee' })(EmployeeForm)
