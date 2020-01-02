@@ -1,12 +1,15 @@
 import React from 'react'
 import { Button } from 'antd'
-import { useHistory } from 'react-router-dom'
+import { useHistory, Redirect, useLocation } from 'react-router-dom'
 import axios from 'utils/axios'
 import useAuth from 'stores/useAuth'
 
 export default () => {
   const history = useHistory()
-  const { setToken } = useAuth()
+  const {
+    state: { from },
+  } = useLocation()
+  const { token, setToken } = useAuth()
 
   const handleLogin = async () => {
     const {
@@ -14,7 +17,11 @@ export default () => {
     } = await axios.get('/login')
     localStorage.setItem('token', user)
     setToken(user)
-    history.push('/')
+    history.push(from)
+  }
+
+  if (token) {
+    return <Redirect to={from} />
   }
 
   return (

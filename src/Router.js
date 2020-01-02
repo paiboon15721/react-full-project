@@ -11,30 +11,31 @@ import Employee from 'pages/Employee'
 import EmployeeAddNew from 'pages/EmployeeAddNew'
 import Test from 'pages/Test'
 import Login from 'pages/Login'
+import PrivateRoute from 'components/PrivateRoute'
 
 export default () => (
   <Router>
-    <Route path="/login">
-      <Login />
-    </Route>
-    <Layout>
-      <Switch>
-        <Route path="/test">
+    <Switch>
+      <Route path="/login">
+        <Login />
+      </Route>
+      <Layout>
+        <PrivateRoute path="/test">
           <Test />
-        </Route>
-        <Route path="/employee/add-new">
+        </PrivateRoute>
+        <PrivateRoute path="/employee/add-new">
           <EmployeeAddNew />
-        </Route>
-        <Route path="/employee">
+        </PrivateRoute>
+        <PrivateRoute path="/employee">
           <Employee />
-        </Route>
-        <Route path="/dashboard">
+        </PrivateRoute>
+        <PrivateRoute path="/dashboard">
           <Dashboard />
-        </Route>
-        <Route exact path="/">
+        </PrivateRoute>
+        <PrivateRoute exact path="/">
           <Redirect to="/dashboard" />
-        </Route>
-      </Switch>
-    </Layout>
+        </PrivateRoute>
+      </Layout>
+    </Switch>
   </Router>
 )
