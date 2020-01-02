@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react'
-import { CancelToken, isCancel } from 'axios'
-import axios from 'utils/axios'
+import axios, { CancelToken, isCancel } from 'utils/axios'
 
 export default url => {
   const [data, setData] = useState([])
